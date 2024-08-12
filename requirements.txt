@@ -1,2 +1,2 @@
-argon2
+argon2-cffi
 pycryptodome
