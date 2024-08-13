@@ -40,9 +40,14 @@ parser.add_argument('file', help="file to encrypt")
 args = parser.parse_args()
 
 # Check that the user has selected Argon2 parameters lower than the OWASP recommendations.
-if (args.time_cost < DEFAULT_TIME_COST or args.memory_cost < DEFAULT_MEMORY_COST or args.parallelism < DEFAULT_PARALLELISM or args.salt_size < DEFAULT_SALT_SIZE or args.key_size < DEFAULT_KEY_SIZE) and not args.i_know_what_i_am_doing:
+if (args.time_cost < DEFAULT_TIME_COST or args.memory_cost < DEFAULT_MEMORY_COST or args.parallelism < DEFAULT_PARALLELISM or args.salt_size < DEFAULT_SALT_SIZE) and not args.i_know_what_i_am_doing:
     print("Warning! Your KDF parameters values are less than recommended.")
     print("To proceed use --i-know-what-i-am-doing")
+    exit(1)
+
+# Check that key length is 16, 24 or 32. 
+if args.key_size not in (16, 24, 32):
+    print("Key length must be 16, 24 or 32 bytes!")
     exit(1)
 
 # Checking parameters for Argon2.
@@ -67,6 +72,7 @@ if not isfile(args.file):
     print(f"File {args.file} not found.")
     exit(1)
 
+# Checking if both -d -x was used
 if args.delete and args.secure_delete:
     print("You have selected both delete and securely delete. The program will assume that original file needs to be securely deleted.")
     args.delete = False
