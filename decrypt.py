@@ -42,6 +42,10 @@ if isfile(args.output) and not args.overwrite_file:
     print(f"File {args.output} already exists. Use --overwrite-file (-f) to overwrite")
     exit(1)
 
+if args.delete and args.secure_delete:
+    print("You have selected both delete and securely delete. The program will assume that original encrypted file needs to be securely deleted.")
+    args.delete = False
+
 # Getting password without echoing it.
 if not args.password:
     args.password = getpass("Enter password (no echo): ")

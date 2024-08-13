@@ -67,6 +67,10 @@ if not isfile(args.file):
     print(f"File {args.file} not found.")
     exit(1)
 
+if args.delete and args.secure_delete:
+    print("You have selected both delete and securely delete. The program will assume that original file needs to be securely deleted.")
+    args.delete = False
+
 # If user hasn't specified output file it will save encrypted file in {filename}.sc (if DEFAULT_FILE_EXTENSION is .sc).
 if not args.output:
     args.output = args.file + DEFAULT_FILE_EXTENSION
