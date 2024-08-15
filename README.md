@@ -26,11 +26,11 @@ It has *#!/usr/bin/python3*, so you can execute it on Linux with `./encrypt.py` 
 ```
 | Order | Name        | Size                   |
 |-------|-------------|------------------------|
-| 1     | Time cost   | 4 bytes                |
-| 2     | Memory cost | 4 bytes                |
-| 3     | Parallelism | 4 bytes                |
-| 4     | Salt size   | 4 bytes                |
-| 5     | Key size    | 4 bytes                |
+| 1     | Time cost   | 4 bytes (little endian)|
+| 2     | Memory cost | 4 bytes (little endian)|
+| 3     | Parallelism | 4 bytes (little endian)|
+| 4     | Salt size   | 4 bytes (little endian)|
+| 5     | Key size    | 4 bytes (little endian)|
 | 6     | Tag         | 16 bytes               |
 | 7     | Nonce       | 16 bytes               |
 | 8     | Salt        | defined in salt size   |
