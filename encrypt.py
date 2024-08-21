@@ -72,7 +72,7 @@ if not isfile(args.file):
     print(f"File {args.file} not found.")
     exit(1)
 
-# Checking if both -d -x was used
+# Checking if both -d -x were used
 if args.delete and args.secure_delete:
     print("You have selected both delete and securely delete. The program will assume that original file needs to be securely deleted.")
     args.delete = False
